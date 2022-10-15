@@ -6,4 +6,5 @@ lxml
 matplotlib
 pandas
 python-dotenv
+tqdm
 xmltodict

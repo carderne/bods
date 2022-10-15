@@ -12,6 +12,8 @@ pip install -r requirements.txt
 - [api.ipynb](notebooks/api.ipynb): calling the REST API for schedule and location data
 - [schedule.ipynb](notebooks/schedule.ipynb): using `gtfs-kit` with a downloaded GTFS archive
 - [location.ipynb](notebooks/location.ipynb): using `python-bods-client` to get real-time GTFS data
+- [parse_pb2.ipynb](notebooks/parse_pb2.ipynb): load archived `.pb2` files (see below)
+- [compare_to_schedule.ipynb](notebooks/compare_to_schedule.ipynb): compare actual to schedule
 
 ## Location archive
 I haven't yet found an historical archive of GTFS real-time location data.
@@ -43,3 +45,5 @@ BODS_DATA="/path/to/bods-bus-data/data"
 - [python-bods-client](https://github.com/ciaranmccormick/python-bods-client)
 - [gtfs-kit](https://gitlab.com/mrcagney/gtfs_kit)
 - [GTFS data download](https://data.bus-data.dft.gov.uk/timetable/download/)
+- [GTFS Reference](https://developers.google.com/transit/gtfs/reference)
+- [GTFS Real-Time Reference](https://developers.google.com/transit/gtfs-realtime/reference)
