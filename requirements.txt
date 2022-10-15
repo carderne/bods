@@ -1,0 +1,9 @@
+bods-client
+gtfs-kit
+httpx
+ipykernel
+lxml
+matplotlib
+pandas
+python-dotenv
+xmltodict
