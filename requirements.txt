@@ -8,5 +8,6 @@ mapclassify
 matplotlib
 pandas
 python-dotenv
+seaborn
 tqdm
 xmltodict
