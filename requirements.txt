@@ -1,8 +1,10 @@
 bods-client
+folium
 gtfs-kit
 httpx
 ipykernel
 lxml
+mapclassify
 matplotlib
 pandas
 python-dotenv

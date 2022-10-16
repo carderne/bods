@@ -14,6 +14,7 @@ pip install -r requirements.txt
 - [location.ipynb](notebooks/location.ipynb): using `python-bods-client` to get real-time GTFS data
 - [parse_pb2.ipynb](notebooks/parse_pb2.ipynb): load archived `.pb2` files (see below)
 - [compare_to_schedule.ipynb](notebooks/compare_to_schedule.ipynb): compare actual to schedule
+- [boarding_time.ipynb](notebooks/boarding_time.ipynb): analyse delays at boarding
 
 ## Location archive
 I haven't yet found an historical archive of GTFS real-time location data.
