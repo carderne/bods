@@ -12,7 +12,6 @@ pip install -r requirements.txt
 - [api.ipynb](notebooks/api.ipynb): calling the REST API for schedule and location data
 - [schedule.ipynb](notebooks/schedule.ipynb): using `gtfs-kit` with a downloaded GTFS archive
 - [location.ipynb](notebooks/location.ipynb): using `python-bods-client` to get real-time GTFS data
-- [parse_pb2.ipynb](notebooks/parse_pb2.ipynb): load archived `.pb2` files (see below)
 - [compare_to_schedule.ipynb](notebooks/compare_to_schedule.ipynb): compare actual to schedule
 - [boarding_time.ipynb](notebooks/boarding_time.ipynb): analyse delays at boarding
 
