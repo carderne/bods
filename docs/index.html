@@ -17,10 +17,12 @@ body { margin: 0; padding: 0; }
             var map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/carderne/cl9ycldb8004z14lnoqlcb2u3',
-                center: [0, 51.5],
+                center: [-1.2, 51.75],
                 zoom: 10,
                 minZoom: 6,
                 maxZoom: 14,
+                maxBounds: [-9, 48, 3, 61],
+                projection: "globe",
             });
         </script>
     </body>
