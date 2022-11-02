@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>British Buses at 2:44pm on 1 Nov 2022</title>
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+        <script src="vendor/mapbox-gl.js"></script>
+        <link href="vendor/mapbox-gl.css" rel="stylesheet" />
+        <style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoiY2FyZGVybmUiLCJhIjoiY2puMXN5cnBtNG53NDN2bnhlZ3h4b3RqcCJ9.eNjrtezXwvM7Ho1VSxo06w';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/carderne/cl9ycldb8004z14lnoqlcb2u3',
+                center: [0, 51.5],
+                zoom: 10,
+                minZoom: 6,
+                maxZoom: 14,
+            });
+        </script>
+    </body>
+</html>
