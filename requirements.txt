@@ -7,9 +7,11 @@ ipykernel
 lxml
 mapclassify
 matplotlib
+mypy
 pandas
 pyarrow
 python-dotenv
 seaborn
 tqdm
+typer
 xmltodict

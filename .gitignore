@@ -1,6 +1,7 @@
 # Custom
 *.zip
 *.pb2
+*.parquet
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
