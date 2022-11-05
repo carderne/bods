@@ -8,22 +8,23 @@
         <style>
 body { margin: 0; padding: 0; }
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+#reload {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    text-align: center;
+    color: #fff;
+    background: #7cbd4e;
+}
         </style>
     </head>
     <body>
         <div id="map"></div>
-        <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoiY2FyZGVybmUiLCJhIjoiY2puMXN5cnBtNG53NDN2bnhlZ3h4b3RqcCJ9.eNjrtezXwvM7Ho1VSxo06w';
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/carderne/cl9ycldb8004z14lnoqlcb2u3',
-                center: [-1.2, 51.75],
-                zoom: 10,
-                minZoom: 6,
-                maxZoom: 14,
-                maxBounds: [-9, 48, 3, 61],
-                projection: "globe",
-            });
-        </script>
+        <button id="reload">⟳</button>
+        <script type="module" src="./main.js"></script>
     </body>
 </html>
