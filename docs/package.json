@@ -5,6 +5,7 @@
   "main": "",
   "scripts": {
     "tw": "npx tailwindcss -i ./tailwind.config.css -o ./tw.css --watch",
+    "twp": "npx tailwindcss -i ./tailwind.config.css -o ./tw.css --watch --minify",
     "dev": "npx lite-server"
   },
   "repository": {

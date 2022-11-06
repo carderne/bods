@@ -6,6 +6,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from google.transit import gtfs_realtime_pb2  # type: ignore[import]
 
+from app.routes import routes
+
 load_dotenv()
 
 api_key = os.environ["API_KEY"]
@@ -45,7 +47,7 @@ def api(bbox: str) -> list[dict[str, float]]:
             "lat": round(t.vehicle.position.latitude, 6),
             "lon": round(t.vehicle.position.longitude, 6),
             "bearing": t.vehicle.position.bearing,
-            "route": t.vehicle.trip.route_id,
+            "route_id": routes.get(t.vehicle.trip.route_id, ""),
         }
         for t in msg.entity
     ]

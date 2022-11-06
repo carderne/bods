@@ -1,10 +1,29 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>British Buses at 2:44pm on 1 Nov 2022</title>
-        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>British Buses</title>
+        <meta property="og:title" content="British Buses">
+        <meta name="twitter:title" content="British Buses">
+        <meta name="twitter:site" content="@chrisarderne">
+        <meta name="twitter:creator" content="@chrisarderne">
+        <meta name="twitter:description" content="British buses and bus routes">
+        <meta name="description" content="British buses and bus routes">
+        <meta property="og:description" content="British buses and bus routes">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image:src" content="https://rdrn.me/bods/image.png" />
+        <meta name="twitter:image" content="https://rdrn.me/bods/image.png" />
+        <meta property="og:image" content="https://rdrn.me/bods/image.png" />
+        <meta property="og:type" content="article">
+        <meta property="og:locale" content="en_US">
+        <meta property="og:site_name" content="Chris Arderne">
+        <meta property="og:url" content="https://rdrn.me/bods/">
+        <link rel="canonical" href="https://rdrn.me/bods/">
+
         <script src="vendor/mapbox-gl.js"></script>
         <link href="vendor/mapbox-gl.css" rel="stylesheet" />
+        <link href="./tw.css" rel="stylesheet" />
         <style>
 body { margin: 0; padding: 0; }
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
@@ -24,7 +43,7 @@ body { margin: 0; padding: 0; }
     </head>
     <body>
         <div id="map"></div>
-        <button id="reload">⟳</button>
+        <button id="reload">🗘</button>
         <script type="module" src="./main.js"></script>
     </body>
 </html>
