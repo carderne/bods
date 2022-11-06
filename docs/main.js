@@ -149,4 +149,5 @@ map.on("load", () => {
   getData();
   map.on("moveend", getData);
   get("reload").addEventListener("click", getData);
+  setInterval(getData, 10_000);
 });
