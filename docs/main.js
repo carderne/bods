@@ -37,7 +37,11 @@ const addToMap = (r) => {
 
 const getData = () => {
   const zoom = map.getZoom();
-  if (map.getZoom() < busMinZoom) return;
+  if (map.getZoom() < busMinZoom) {
+    document.getElementById("zoom").style.display = "block";
+    return;
+  }
+  document.getElementById("zoom").style.display = "none";
   const bounds = map.getBounds();
   const bbox = `${bounds._sw.lng},${bounds._sw.lat},${bounds._ne.lng},${bounds._ne.lat}`;
   fetch(`http://pc.local:5123/api/locations/${bbox}`)
