@@ -58,9 +58,9 @@ const getData = () => {
 const layout = {
   "text-field": ["to-string", ["get", "route_id"]],
   "text-size": 10,
-  "text-offset": [1, -1],
+  "text-offset": [.7, -.7],
   "icon-image": "arrow",
-  "icon-size": ["interpolate", ["linear"], ["zoom"], 8, 0.6, 16, 1.1],
+  "icon-size": ["interpolate", ["linear"], ["zoom"], 8, 0.2, 16, 1.1],
   "icon-rotate": [
     "interpolate",
     ["linear"],
@@ -85,23 +85,10 @@ const opacity = [
 const paint = {
   "text-halo-color": "#ffffff",
   "text-halo-width": 2,
+  "text-halo-blur": 1,
   "icon-opacity": opacity,
   "text-opacity": opacity,
-  "icon-color": [
-    "interpolate",
-    ["linear"],
-    ["get", "bearing"],
-    0,
-    "#e9e419",
-    90,
-    "#fc41f6",
-    180,
-    "#3ff2f3",
-    270,
-    "#25af17",
-    359,
-    "#e9e419",
-  ],
+  "icon-color": "hsla(120, 76%, 40%, 1)",
 };
 
 map.on("load", () => {
