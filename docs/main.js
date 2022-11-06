@@ -3,7 +3,7 @@
 const busMinZoom = 9;
 
 const url =
-  window.location.protocol == "http"
+  window.location.protocol == "http:"
     ? new URL("http://localhost:5123/api/locations/")
     : new URL("https://bods-production.up.railway.app/api/locations/");
 
@@ -38,6 +38,7 @@ const addToMap = (r) => {
     },
   }));
   map.getSource("bus").setData(fc);
+  document.getElementById("loading").style.display = "none";
 };
 
 const getData = () => {
@@ -46,19 +47,22 @@ const getData = () => {
     document.getElementById("zoom").style.display = "block";
     return;
   }
+  document.getElementById("loading").style.display = "block";
   document.getElementById("zoom").style.display = "none";
   const bounds = map.getBounds();
   const bbox = `${bounds._sw.lng},${bounds._sw.lat},${bounds._ne.lng},${bounds._ne.lat}`;
   fetch(`${url}${bbox}`)
     .then((r) => r.json())
     .then((r) => addToMap(r))
-    .catch((e) => {});
+    .catch((e) => {
+      document.getElementById("loading").style.display = "none";
+    });
 };
 
 const layout = {
   "text-field": ["to-string", ["get", "route_id"]],
   "text-size": 10,
-  "text-offset": [.7, -.7],
+  "text-offset": [0.7, -0.7],
   "icon-image": "arrow",
   "icon-size": ["interpolate", ["linear"], ["zoom"], 8, 0.2, 16, 1.1],
   "icon-rotate": [
