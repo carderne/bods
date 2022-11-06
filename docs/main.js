@@ -150,7 +150,6 @@ map.on("load", () => {
 
   getData();
   map.on("moveend", getData);
-  get("reload").addEventListener("click", getData);
   get("progress").style.width = "100%";
   setInterval(getData, 9_000);
 });
