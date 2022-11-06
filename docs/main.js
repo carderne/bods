@@ -28,48 +28,31 @@ const deg2rad = (deg) => deg * (Math.PI / 180);
 
 const emptyFc = () => ({ type: "FeatureCollection", features: [] });
 
+const makePoint = (f, which, offset) => ({
+  type: "Feature",
+  properties: {
+    bearing: f.bearing,
+    route_id: f.route_id,
+    which,
+  },
+  geometry: {
+    type: "Point",
+    coordinates: [
+      f.lon - offset * Math.sin(deg2rad(f.bearing)),
+      f.lat - offset * Math.cos(deg2rad(f.bearing)),
+    ],
+  },
+});
+
 const addToMap = (r) => {
   const fc = emptyFc();
   fc.features = r
     .map((f) => [
-      {
-        type: "Feature",
-        properties: {
-          bearing: f.bearing,
-          route_id: f.route_id,
-          which: 2,
-        },
-        geometry: {
-          type: "Point",
-          coordinates: [f.lon, f.lat],
-        },
-      },
-      {
-        type: "Feature",
-        properties: {
-          which: 1,
-        },
-        geometry: {
-          type: "Point",
-          coordinates: [
-            f.lon - 0.00005 * Math.sin(deg2rad(f.bearing)),
-            f.lat - 0.00005 * Math.cos(deg2rad(f.bearing)),
-          ],
-        },
-      },
-      {
-        type: "Feature",
-        properties: {
-          which: 0,
-        },
-        geometry: {
-          type: "Point",
-          coordinates: [
-            f.lon - 0.00009 * Math.sin(deg2rad(f.bearing)),
-            f.lat - 0.00009 * Math.cos(deg2rad(f.bearing)),
-          ],
-        },
-      },
+      makePoint(f, 4, 0),
+      makePoint(f, 3, 0.00006),
+      makePoint(f, 2, 0.00014),
+      makePoint(f, 1, 0.00024),
+      makePoint(f, 0, 0.00062),
     ])
     .flat();
   map.getSource("bus").setData(fc);
@@ -99,14 +82,39 @@ map.on("load", () => {
     type: "geojson",
     data: emptyFc(),
   });
-  map.addSource("trail", {
-    type: "geojson",
-    data: emptyFc(),
-  });
-  map.addSource("trail2", {
-    type: "geojson",
-    data: emptyFc(),
-  });
+
+  // prettier-ignore
+  const radius = [
+    "step", ["get", "which"],
+       2,
+    1, 2.5,
+    2, 3,
+    3, 4,
+    4, 6
+  ];
+  // prettier-ignore
+  const width = [
+    "step", ["get", "which"],
+       1,
+    1, 1.5,
+    2, 2,
+    3, 2.5,
+    4, 4,
+  ];
+  // prettier-ignore
+  const opacity = [
+    "interpolate", ["linear"], ["zoom"],
+    8, ["case", ["==", ["get", "which"], 4], 1, 0],
+    13, ["case", ["==", ["get", "which"], 4], 1, ["==", ["get", "which"], 0], 1, 0],
+    15, 1,
+    17, ["case", ["==", ["get", "which"], 0], 0, 1],
+  ];
+  // prettier-ignore
+  const textOpacity = [
+    "interpolate", ["linear"], ["zoom"],
+    13, 0,
+    14, ["case", ["==", ["get", "which"], 4], 1, 0],
+  ];
 
   map.addLayer({
     id: "bus",
@@ -114,18 +122,10 @@ map.on("load", () => {
     source: "bus",
     paint: {
       "circle-stroke-color": "hsla(120, 76%, 40%, 1)",
-      "circle-radius": ["step", ["get", "which"], 2, 1, 4, 2, 5],
-      "circle-stroke-width": ["step", ["get", "which"], 1, 1, 2, 2, 3],
+      "circle-radius": radius,
+      "circle-stroke-width": width,
       "circle-opacity": 0,
-      "circle-stroke-opacity": [
-        "interpolate",
-        ["linear"],
-        ["zoom"],
-        15,
-        ["case", ["==", ["get", "which"], 2], 1, 0],
-        22,
-        1,
-      ],
+      "circle-stroke-opacity": opacity,
     },
   });
 
@@ -142,12 +142,8 @@ map.on("load", () => {
       "text-halo-color": "#ffffff",
       "text-halo-width": 2,
       "text-halo-blur": 1,
-      "text-opacity": ["interpolate", ["linear"], ["zoom"], 13, 0, 14, 1],
+      "text-opacity": textOpacity,
     },
-  });
-
-  map.on("click", "bus", (e) => {
-    console.log(e.features[0].properties.bearing);
   });
 
   getData();
