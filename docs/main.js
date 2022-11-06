@@ -1,22 +1,24 @@
 /* global mapboxgl */
 
+const get = document.getElementById.bind(document);
+
 const busMinZoom = 9;
 
 const url =
-  window.location.protocol == "http:"
+  window.location.protocol === "http:"
     ? new URL("http://localhost:5123/api/locations/")
     : new URL("https://bods-production.up.railway.app/api/locations/");
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiY2FyZGVybmUiLCJhIjoiY2puMXN5cnBtNG53NDN2bnhlZ3h4b3RqcCJ9.eNjrtezXwvM7Ho1VSxo06w";
-var map = new mapboxgl.Map({
+const map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/carderne/cla5557a3001n14l7hfc6m3qm?fresh=true",
   center: [-1.2, 51.75],
   zoom: 10,
   minZoom: 4,
   maxZoom: 16,
-  maxBounds: [-9, 48, 3, 61],
+  maxBounds: [-9, 45, 9, 65],
   projection: "globe",
   hash: "loc",
 });
@@ -38,24 +40,23 @@ const addToMap = (r) => {
     },
   }));
   map.getSource("bus").setData(fc);
-  document.getElementById("loading").style.display = "none";
+  get("loading").style.display = "none";
 };
 
 const getData = () => {
-  const zoom = map.getZoom();
   if (map.getZoom() < busMinZoom) {
-    document.getElementById("zoom").style.display = "block";
+    get("zoom").style.display = "block";
     return;
   }
-  document.getElementById("loading").style.display = "block";
-  document.getElementById("zoom").style.display = "none";
+  get("loading").style.display = "block";
+  get("zoom").style.display = "none";
   const bounds = map.getBounds();
   const bbox = `${bounds._sw.lng},${bounds._sw.lat},${bounds._ne.lng},${bounds._ne.lat}`;
   fetch(`${url}${bbox}`)
     .then((r) => r.json())
     .then((r) => addToMap(r))
     .catch((e) => {
-      document.getElementById("loading").style.display = "none";
+      get("loading").style.display = "none";
     });
 };
 
@@ -109,11 +110,11 @@ map.on("load", () => {
     id: "bus",
     type: "symbol",
     source: "bus",
-    layout: layout,
-    paint: paint,
+    layout,
+    paint,
   });
 
   getData();
   map.on("moveend", getData);
-  document.getElementById("reload").addEventListener("click", getData);
+  get("reload").addEventListener("click", getData);
 });

@@ -3,18 +3,14 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: [
-    "prettier",
-  ],
+  extends: ["standard-with-typescript", "prettier"],
+  overrides: [],
   parserOptions: {
-    ecmaVersion: 12,
+    ecmaVersion: "latest",
     sourceType: "module",
   },
   plugins: ["prettier", "import"],
   rules: {
-    "import/extensions": [0, { "<js>": "always" }],
     quotes: [2, "double"],
-    "object-shorthand": "off",
-    "func-names": ["error", "never"],
   },
 };
