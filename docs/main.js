@@ -65,6 +65,8 @@ const getData = () => {
     get("zoom").style.display = "block";
     return;
   }
+  const curWidth = get("progress").style.width;
+  get("progress").style.width = curWidth === "0%" ? "100%" : "0%";
   get("loading").style.display = "block";
   get("zoom").style.display = "none";
   const bounds = map.getBounds();
@@ -149,5 +151,7 @@ map.on("load", () => {
   getData();
   map.on("moveend", getData);
   get("reload").addEventListener("click", getData);
-  setInterval(getData, 10_000);
+  get("progress").style.width = "100%";
+  setInterval(getData, 9_000);
 });
+
