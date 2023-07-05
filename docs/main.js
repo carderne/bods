@@ -7,7 +7,7 @@ const busMinZoom = 9;
 const url =
   window.location.protocol === "http:"
     ? new URL("http://localhost:5123/api/locations/")
-    : new URL("https://bods-production.up.railway.app/api/locations/");
+    : new URL("https://bods.fly.dev/api/locations/");
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiY2FyZGVybmUiLCJhIjoiY2puMXN5cnBtNG53NDN2bnhlZ3h4b3RqcCJ9.eNjrtezXwvM7Ho1VSxo06w";
